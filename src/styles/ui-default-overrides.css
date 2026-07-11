@@ -16,6 +16,39 @@ body {
   padding-bottom: var(--hfb-space-6);
 }
 
+:root {
+  --hfb-nav-height: 60px;
+  --hfb-nav-logo-height: 42px;
+  --hfb-nav-mobile-logo-height: 30px;
+}
+
+.nav,
+.nav--shadow,
+.nav--placeholder {
+  height: var(--hfb-nav-height);
+}
+
+.nav__item {
+  line-height: calc(var(--hfb-nav-height) - 6px);
+}
+
+.nav__item--round {
+  margin-top: calc((var(--hfb-nav-height) - 32px) / 2);
+  margin-bottom: calc((var(--hfb-nav-height) - 32px) / 2);
+}
+
+.nav__logo {
+  width: auto;
+  height: var(--hfb-nav-logo-height);
+  margin-top: calc((var(--hfb-nav-height) - var(--hfb-nav-logo-height)) / 2);
+  margin-bottom: calc((var(--hfb-nav-height) - var(--hfb-nav-logo-height)) / 2);
+  object-fit: contain;
+}
+
+.header--mobile__domain {
+  height: var(--hfb-nav-mobile-logo-height);
+}
+
 /*
  * Hydro 默认行容器在高清屏幕最大为 1200px，9/3 栅格下主栏仅约 900px。
  * 将上一版约 1440px 的主内容区缩小为其 0.8 倍（1152px）。标准 9/3
@@ -220,6 +253,10 @@ body {
 }
 
 @media (max-width: 767px) {
+  :root {
+    --hfb-nav-height: 52px;
+  }
+
   .section__header,
   .section__body {
     padding-left: var(--hfb-space-4);
