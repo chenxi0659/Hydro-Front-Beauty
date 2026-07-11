@@ -16,6 +16,18 @@ body {
   padding-bottom: var(--hfb-space-6);
 }
 
+/*
+ * Hydro 默认行容器在高清屏幕最大为 1200px，9/3 栅格下主栏仅约 900px。
+ * 在可用空间足够时把主内容行扩大为默认上限的 1.6 倍（1920px），
+ * 保持原有 9/3 栅格，让主栏和右侧导航栏同时按相同比例扩展。
+ */
+@media (min-width: 1280px) {
+  .main > .row {
+    width: calc(100% - 48px);
+    max-width: 1920px;
+  }
+}
+
 .section {
   background: var(--hfb-surface);
   border: 1px solid var(--hfb-border);
