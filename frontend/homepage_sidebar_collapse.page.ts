@@ -7,8 +7,6 @@ const collapsibleTitles = new Set([
   '最近题目',
   '最新題目',
   '最近題目',
-  'Hitokoto',
-  '一言',
   'Recommended',
   '推荐',
   '推薦',
