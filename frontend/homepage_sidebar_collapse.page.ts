@@ -13,6 +13,7 @@ const collapsibleTitles = new Set([
   '推荐',
   '推薦',
 ]);
+let contentSerial = 0;
 
 function normaliseTitle(value: string) {
   return value.replace(/\s+/g, ' ').trim();
@@ -29,13 +30,32 @@ function getStorageKey(title: string) {
   return `hfb:homepage:sidebar:${location.pathname}:${title}`;
 }
 
-function setCollapsed(section: HTMLElement, button: HTMLButtonElement, collapsed: boolean, title: string) {
+function setCollapsed(section: HTMLElement, content: HTMLElement, button: HTMLButtonElement, collapsed: boolean, title: string) {
   const labels = getLabels();
   section.classList.toggle('hfb-sidebar-section--collapsed', collapsed);
+  if (collapsed) content.setAttribute('aria-hidden', 'true');
+  else content.removeAttribute('aria-hidden');
   button.setAttribute('aria-expanded', String(!collapsed));
-  button.setAttribute('aria-label', `${collapsed ? labels.expand : labels.collapse}${title}`);
+  button.setAttribute('aria-label', `${collapsed ? labels.expand : labels.collapse} ${title}`);
   button.title = collapsed ? labels.expand : labels.collapse;
-  button.textContent = collapsed ? '⌄' : '⌃';
+}
+
+function createToggleIcon() {
+  const namespace = 'http://www.w3.org/2000/svg';
+  const icon = document.createElementNS(namespace, 'svg');
+  icon.setAttribute('viewBox', '0 0 24 24');
+  icon.setAttribute('aria-hidden', 'true');
+  icon.setAttribute('focusable', 'false');
+
+  const path = document.createElementNS(namespace, 'path');
+  path.setAttribute('d', 'm6 15 6-6 6 6');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('stroke', 'currentColor');
+  path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('stroke-linejoin', 'round');
+  path.setAttribute('stroke-width', '1.8');
+  icon.append(path);
+  return icon;
 }
 
 function initialiseSidebarCollapse() {
@@ -52,9 +72,22 @@ function initialiseSidebarCollapse() {
     section.dataset.hfbCollapsible = 'true';
     section.classList.add('hfb-sidebar-section');
 
+    const content = document.createElement('div');
+    content.className = 'hfb-sidebar-section__content';
+    content.id = `hfb-sidebar-content-${++contentSerial}`;
+    const contentInner = document.createElement('div');
+    contentInner.className = 'hfb-sidebar-section__content-inner';
+    Array.from(section.children)
+      .filter((child) => child !== header)
+      .forEach((child) => contentInner.append(child));
+    content.append(contentInner);
+    section.append(content);
+
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'hfb-sidebar-section__toggle';
+    button.setAttribute('aria-controls', content.id);
+    button.append(createToggleIcon());
     header.append(button);
 
     const storageKey = getStorageKey(title);
@@ -64,11 +97,11 @@ function initialiseSidebarCollapse() {
     } catch {
       // Private browsing or browser policy can prevent localStorage access.
     }
-    setCollapsed(section, button, collapsed, title);
+    setCollapsed(section, content, button, collapsed, title);
 
     button.addEventListener('click', () => {
       const nextCollapsed = !section.classList.contains('hfb-sidebar-section--collapsed');
-      setCollapsed(section, button, nextCollapsed, title);
+      setCollapsed(section, content, button, nextCollapsed, title);
       try {
         localStorage.setItem(storageKey, nextCollapsed ? 'collapsed' : 'expanded');
       } catch {
