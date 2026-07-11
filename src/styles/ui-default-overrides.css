@@ -1,0 +1,38 @@
+@import "./tokens.css";
+
+/* 路径 A 的入口：接入 Hydro ui-default 后，所有视觉覆盖从此文件开始。 */
+html,
+body {
+  background: var(--hfb-bg);
+  color: var(--hfb-text);
+  font-family: var(--hfb-font-sans);
+}
+
+.section {
+  background: var(--hfb-surface);
+  border: 1px solid var(--hfb-border);
+  border-radius: var(--hfb-radius-md);
+  box-shadow: var(--hfb-shadow-sm);
+}
+
+.rounded.button,
+.button {
+  border-radius: var(--hfb-radius-sm);
+}
+
+.data-table,
+.data-table .section__table-header {
+  border-color: var(--hfb-border);
+}
+
+.data-table th {
+  color: var(--hfb-text-muted);
+  font-weight: 600;
+}
+
+.textbox,
+.select2-selection {
+  border-color: var(--hfb-border);
+  border-radius: var(--hfb-radius-sm);
+}
+

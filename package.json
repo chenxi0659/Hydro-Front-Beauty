@@ -1,0 +1,20 @@
+{
+  "name": "hydro-front-beauty",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Design system and progressive UI modernization assets for HydroOJ",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@mantine/core": "^9.4.0",
+    "@mantine/notifications": "^9.4.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}
+

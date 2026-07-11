@@ -1,0 +1,42 @@
+:root {
+  --hfb-font-sans: Inter, "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  --hfb-font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+  --hfb-primary-50: #eef6ff;
+  --hfb-primary-100: #d9ebff;
+  --hfb-primary-500: #2563eb;
+  --hfb-primary-600: #1d4ed8;
+  --hfb-primary-700: #1e40af;
+  --hfb-success: #16a34a;
+  --hfb-warning: #d97706;
+  --hfb-danger: #dc2626;
+
+  --hfb-bg: #f6f8fc;
+  --hfb-surface: #ffffff;
+  --hfb-surface-muted: #f8fafc;
+  --hfb-text: #172033;
+  --hfb-text-muted: #64748b;
+  --hfb-border: #dce3ef;
+
+  --hfb-radius-sm: 8px;
+  --hfb-radius-md: 12px;
+  --hfb-radius-lg: 16px;
+  --hfb-shadow-sm: 0 1px 2px rgb(15 23 42 / 6%);
+  --hfb-shadow-md: 0 10px 30px rgb(15 23 42 / 10%);
+  --hfb-space-1: 4px;
+  --hfb-space-2: 8px;
+  --hfb-space-3: 12px;
+  --hfb-space-4: 16px;
+  --hfb-space-6: 24px;
+}
+
+[data-theme="dark"],
+.theme--dark {
+  --hfb-bg: #101827;
+  --hfb-surface: #172033;
+  --hfb-surface-muted: #1e293b;
+  --hfb-text: #e5edf9;
+  --hfb-text-muted: #a8b5ca;
+  --hfb-border: #334155;
+}
+
