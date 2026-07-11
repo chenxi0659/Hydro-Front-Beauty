@@ -2,7 +2,6 @@
   "name": "@chenxi0659/hydro-front-beauty",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "description": "Design system and progressive UI modernization assets for HydroOJ",
   "main": "index.ts",
   "scripts": {
